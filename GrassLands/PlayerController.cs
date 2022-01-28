@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using GrassLands.Collisions;
 
 namespace GrassLands
 {
@@ -12,24 +13,24 @@ namespace GrassLands
     {
         private KeyboardState keyboardState;
 
-        private Texture2D texture;
+        private Texture2D _texture;
 
-        private Vector2 position = new Vector2(200, 200);
+        private Vector2 position;
 
-        //private BoundingRectangle bounds = new BoundingRectangle(new Vector2(200 - 16, 200 - 16), 32, 32);
+        private BoundingRectangle bounds = new BoundingRectangle(new Vector2(200 - 16, 200 - 16), 16, 9);
 
-        //public BoundingRectangle Bounds => bounds;
+        public BoundingRectangle Bounds => bounds;
 
         public Color Color { get; set; } = Color.White;
 
+        public PlayerController(Vector2 pos)
+        {
+            position = pos;
+        }
 
-        /// <summary>
-        /// Loads the sprite texture using the provided ContentManager
-        /// </summary>
-        /// <param name="content">The ContentManager to load with</param>
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("tilesPacked");
+            _texture = content.Load<Texture2D>("tilesPacked");
         }
 
         /// <summary>
@@ -53,6 +54,8 @@ namespace GrassLands
                 position += new Vector2(1, 0) * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 
             }
+            bounds.X = position.X + 7;
+            bounds.Y = position.Y + 23;
         }
 
         /// <summary>
@@ -63,7 +66,7 @@ namespace GrassLands
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             
-            spriteBatch.Draw(texture, position, new Rectangle(224, 96, 32, 32), Color.White);
+            spriteBatch.Draw(_texture, position, new Rectangle(225, 97, 30, 30), Color, 0f, new Vector2(0,0), 1f, SpriteEffects.None, 0);
             
         }
     }

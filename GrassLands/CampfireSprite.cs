@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using GrassLands.Collisions;
 
 
 namespace GrassLands
@@ -20,6 +21,10 @@ namespace GrassLands
         private Vector2 position;
 
         private Texture2D texture;
+
+        private BoundingRectangle bounds = new BoundingRectangle(new Vector2(390, 408), 20, 16);
+
+        public BoundingRectangle Bounds => bounds;
 
         public CampfireSprite(Vector2 position)
         {
