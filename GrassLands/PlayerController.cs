@@ -29,7 +29,7 @@ namespace GrassLands
         /// <param name="content">The ContentManager to load with</param>
         public void LoadContent(ContentManager content)
         {
-            
+            texture = content.Load<Texture2D>("tilesPacked");
         }
 
         /// <summary>
@@ -38,7 +38,21 @@ namespace GrassLands
         /// <param name="gameTime">The GameTime</param>
         public void Update(GameTime gameTime)
         {
-            
+            keyboardState = Keyboard.GetState();
+
+            // Apply keyboard movement
+            if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) position += new Vector2(0, -1) * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 1) * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
+            {
+                position += new Vector2(-1, 0) * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                
+            }
+            if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
+            {
+                position += new Vector2(1, 0) * 100 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                
+            }
         }
 
         /// <summary>
@@ -48,6 +62,8 @@ namespace GrassLands
         /// <param name="spriteBatch">The spritebatch to render with</param>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            
+            spriteBatch.Draw(texture, position, new Rectangle(224, 96, 32, 32), Color.White);
             
         }
     }
