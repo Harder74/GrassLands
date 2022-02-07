@@ -58,6 +58,7 @@ namespace GrassLands
                 animationTimer -= ANIMATION_SPEED;
             }
 
+            /*
             int frameStart = 0; 
             if (animationFrame == 0)
             {
@@ -69,6 +70,8 @@ namespace GrassLands
             }
            
             var source = new Rectangle(frameStart, 0, 32, 64);
+            */
+            var source = new Rectangle(animationFrame * 64, 0, 64, 64);
             spriteBatch.Draw(texture, position, source, Color.White, 0f, new Vector2(16,32), .8f, SpriteEffects.None, 0);
         }
     }

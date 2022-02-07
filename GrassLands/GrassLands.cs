@@ -78,6 +78,7 @@ namespace GrassLands
             _spriteBatch.Draw(_ball, rect2, Color.White);
             */
             _spriteBatch.DrawString(_centaur, "Step into the flames to Exit.", new Vector2(350, 340), Color.Gold);
+            _spriteBatch.DrawString(_centaur, "Use W, A, S, D to move the character.", new Vector2(150, 100), Color.Gold);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
